@@ -1,0 +1,28 @@
+/* frontend/src/index.css */
+:root {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh; /* Garante que o corpo ocupe 100% da altura da tela */
+  background-color: #f4f7f6;
+  width: 100%; /* Adicione esta linha se não tiver */
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0; /* Remova o padding desnecessário */
+  text-align: center;
+  width: 100%; /* Garante que o container raiz ocupe a largura total */
+  height: 100vh; /* Garante que o container raiz ocupe a altura total */
+  display: flex; /* Adicione este display para centralizar melhor */
+  justify-content: center;
+  align-items: center;
+}
