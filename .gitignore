@@ -1,10 +1,19 @@
-# Node
-node_modules/
-dist/
-.env
+# Exclui as pastas de dependências de AMBOS os projetos
+/backend/node_modules
+/frontend/node_modules
 
-# MacOS
-.DS_Store
+# Exclui pastas de build de AMBOS os projetos (se aplicável)
+/backend/dist
+/frontend/dist
 
-# VSCode
+# Exclui arquivos de banco de dados
+/backend/db/*.db
+
+# Exclui logs e arquivos temporários
+npm-debug.log*
+
+# Exclui configurações de IDE (como VSCode)
 .vscode/
+
+# Exclui arquivos de lock duplicados, se tiver
+package-lock.json
