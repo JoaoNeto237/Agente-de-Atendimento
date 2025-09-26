@@ -8,6 +8,11 @@
     "esModuleInterop": true
   },
   "include": [
+<<<<<<< HEAD
     "src/**/*"
+=======
+    "src/**/*",
+    "src/__tests__/**/*"
+>>>>>>> feat/api-messages
   ]
 }

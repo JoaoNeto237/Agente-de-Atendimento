@@ -20,12 +20,16 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.9",
     "@types/sqlite3": "^3.1.11",
+<<<<<<< HEAD
     "@types/supertest": "^6.0.2",
+=======
+>>>>>>> feat/api-messages
     "jest": "^29.7.0",
     "nodemon": "^3.1.4",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.2",
     "ts-node": "^10.9.2",
+<<<<<<< HEAD
     "typescript": "^5.5.3"
   },
   "jest": {
@@ -34,5 +38,9 @@
     "testMatch": [
       "**/src/__tests__/**/*.test.ts"
     ]
+=======
+    "typescript": "^5.5.3",
+    "@types/supertest": "^6.0.2"
+>>>>>>> feat/api-messages
   }
 }
