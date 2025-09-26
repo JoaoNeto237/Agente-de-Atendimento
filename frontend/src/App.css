@@ -1,3 +1,4 @@
+/* frontend/src/App.css */
 .chat-container {
   background-color: #fff;
   border-radius: 10px;
@@ -7,11 +8,11 @@
   height: 80vh;
   max-height: 600px;
   width: 400px;
-  overflow: hidden; 
+  overflow: hidden; /* Garante que as mensagens não saiam da caixa */
 }
 
 .chat-header {
-  background-color: #e31e25; 
+  background-color: #e31e25; /* Vermelho forte para o cabeçalho */
   color: white;
   padding: 15px;
   margin: 0;
@@ -20,9 +21,9 @@
 }
 
 .chat-history {
-  flex-grow: 1; 
+  flex-grow: 1; /* Faz o histórico ocupar todo o espaço restante */
   padding: 15px;
-  overflow-y: auto; 
+  overflow-y: auto; /* Permite rolagem quando o conteúdo exceder */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -37,13 +38,13 @@
 }
 
 .message.user {
-  align-self: flex-end; 
-  background-color: #dcf8c6; 
+  align-self: flex-end; /* Alinha a mensagem do usuário à direita */
+  background-color: #dcf8c6; /* Cor de balão de chat típico */
 }
 
 .message.bot {
-  align-self: flex-start; 
-  background-color: #f1f0f0; 
+  align-self: flex-start; /* Alinha a mensagem do bot à esquerda */
+  background-color: #f1f0f0; /* Cor neutra para o bot */
 }
 
 .chat-input {

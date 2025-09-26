@@ -1,0 +1,14 @@
+# Exclui a pasta de build do TypeScript
+/dist
+
+# Exclui o arquivo do banco de dados SQLite
+/db/*.db
+
+# Exclui o cache e logs do Jest
+/.jest-cache
+
+# Exclui logs
+npm-debug.log*
+
+# Exclui o cache do Node
+.nyc_output/

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 
+// Interface para garantir a tipagem das mensagens
 interface Message {
   id: number | string;
   sender: 'user' | 'bot';
@@ -10,6 +11,7 @@ interface Message {
 
 const API_BASE_URL = 'http://localhost:3000/messages';
 
+// Mensagem inicial de boas-vindas
 const InitialBotMessage: Message = {
     id: 'initial_welcome',
     sender: 'bot',
@@ -21,20 +23,7 @@ function App() {
   const [input, setInput] = useState('');
   const chatHistoryRef = useRef<HTMLDivElement>(null);
 
-  // 1. Funções de Busca e Limpeza
-  
-  const clearAndFetchMessages = async () => {
-      try {
-          // Limpa o histórico no backend 
-          await axios.delete(API_BASE_URL);
-          
-          setMessages([InitialBotMessage]);
-          
-          fetchMessages();
-      } catch (error) {
-           console.error('Erro durante o refresh da sessão:', error);
-      }
-  };
+  // 1. FUNÇÕES DE BUSCA E LIMPEZA
   
   const fetchMessages = async () => {
     try {
@@ -44,7 +33,9 @@ function App() {
       const newMessages = new Set<Message>();
       newMessages.add(InitialBotMessage);
 
+      // Adiciona o histórico do DB APÓS a mensagem inicial
       history.forEach(msg => {
+          // Filtra a mensagem inicial, caso ela tenha sido salva acidentalmente no DB
           if (msg.id !== 'initial_welcome') {
               newMessages.add(msg);
           }
@@ -56,19 +47,36 @@ function App() {
       console.error('Erro ao carregar histórico:', error);
     }
   };
+
+  const clearAndFetchMessages = async () => {
+      try {
+          // Limpa o histórico no backend (DELETE)
+          await axios.delete(API_BASE_URL);
+          
+          // Garante que a primeira mensagem seja a de boas-vindas
+          setMessages([InitialBotMessage]);
+          
+          fetchMessages();
+      } catch (error) {
+           console.error('Erro durante o refresh da sessão:', error);
+      }
+  };
   
+  // 2. EFEITOS E LIFECYCLE
+  
+  // Limpa e carrega o histórico ao montar o componente
   useEffect(() => {
-    clearAndFetchMessages(); // Limpa e carrega ao montar o componente
+    clearAndFetchMessages(); 
   }, []);
 
+  // Rola o chat para baixo
   useEffect(() => {
-    // Rola o chat para baixo
     if (chatHistoryRef.current) {
         chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
     }
   }, [messages]);
 
-  // Função de Envio
+  // 3. FUNÇÃO DE ENVIO
   
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +86,7 @@ function App() {
     setInput('');
 
     try {
-      // Adiciona a mensagem do usuário imediatamente ao estado
+      // Adiciona a mensagem do usuário imediatamente ao estado (UX)
       const tempUserMessage: Message = {
           id: Date.now(),
           sender: 'user',
@@ -97,7 +105,7 @@ function App() {
     }
   };
 
-  //  Renderização
+  // 4. RENDERIZAÇÃO
   
   return (
     <div className="chat-container">
