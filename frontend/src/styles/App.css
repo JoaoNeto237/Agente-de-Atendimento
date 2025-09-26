@@ -1,0 +1,113 @@
+/* frontend/src/App.css */
+
+/* --- Container Principal --- */
+.chat-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 90vh; /* Aumenta a altura para telas maiores */
+  width: 90%; /* Por padrão, ocupa 90% da largura do contêiner raiz */
+  max-width: 450px; /* Limita a largura máxima para celulares/desktop */
+  overflow: hidden;
+}
+
+/* --- Cabeçalho --- */
+.chat-header {
+  background-color: #e31e25;
+  color: white;
+  padding: 15px;
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+/* Adicionando ícone ou emoji ao cabeçalho para melhor visual */
+.chat-header::before {
+    content: "🍕";
+    font-size: 1.5em;
+    margin-right: 10px;
+    line-height: 1;
+}
+
+/* --- Histórico de Mensagens --- */
+.chat-history {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  line-height: 1.4;
+  font-size: 0.9em;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.message.user {
+  align-self: flex-end; 
+  background-color: #dcf8c6; 
+}
+
+.message.bot {
+  align-self: flex-start; 
+  background-color: #f1f0f0; 
+}
+
+.sender-name {
+    font-size: 0.7em;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 3px;
+    display: block;
+}
+
+/* --- Input e Botão --- */
+.chat-input {
+  display: flex;
+  border-top: 1px solid #eee;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-size: 1em;
+}
+
+.chat-input button {
+  background-color: #e31e25;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.chat-input button:hover {
+    background-color: #a3151b;
+}
+
+
+/* --- Responsividade (Para telas grandes/desktop) --- */
+@media (min-width: 768px) {
+    .chat-container {
+        height: 600px;
+        width: 450px;
+    }
+}
