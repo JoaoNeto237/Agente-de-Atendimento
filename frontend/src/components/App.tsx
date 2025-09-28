@@ -1,6 +1,8 @@
+// frontend/src/components/App.tsx
+
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import '../styles/App.css';
+import '../styles/App.css'; 
 
 // Interface para garantir a tipagem das mensagens
 interface Message {
@@ -9,7 +11,7 @@ interface Message {
   content: string;
 }
 
-const API_BASE_URL = 'http://localhost:3000/messages';
+const API_BASE_URL = 'http://localhost:3000/messages'; 
 
 // Mensagem inicial de boas-vindas
 const InitialBotMessage: Message = {
@@ -21,21 +23,20 @@ const InitialBotMessage: Message = {
 function App() {
   const [messages, setMessages] = useState<Message[]>([InitialBotMessage]);
   const [input, setInput] = useState('');
-  const chatHistoryRef = useRef<HTMLDivElement>(null);
+  const chatHistoryRef = useRef<HTMLDivElement>(null); 
 
-  // 1. FUNÇÕES DE BUSCA E LIMPEZA
-  
+  // 1. FUNÇÃO DE BUSCA (AGORA COM CACHE-BUSTER)
   const fetchMessages = async () => {
     try {
-      const response = await axios.get(API_BASE_URL);
+      // Adiciona um parâmetro de tempo único para forçar o navegador a não usar o cache
+      const cacheBuster = new Date().getTime(); 
+      const response = await axios.get(`${API_BASE_URL}?_t=${cacheBuster}`);
       const history = response.data as Message[];
       
       const newMessages = new Set<Message>();
       newMessages.add(InitialBotMessage);
 
-      // Adiciona o histórico do DB APÓS a mensagem inicial
       history.forEach(msg => {
-          // Filtra a mensagem inicial, caso ela tenha sido salva acidentalmente no DB
           if (msg.id !== 'initial_welcome') {
               newMessages.add(msg);
           }
@@ -48,24 +49,26 @@ function App() {
     }
   };
 
+  // 2. FUNÇÃO DE LIMPEZA (GARANTE QUE O ESTADO LOCAL ESTEJA LIMPO)
   const clearAndFetchMessages = async () => {
       try {
-          // Limpa o histórico no backend (DELETE)
-          await axios.delete(API_BASE_URL);
+          // 1. Executa o DELETE e AGUARDA a confirmação de exclusão
+          await axios.delete(API_BASE_URL); 
           
-          // Garante que a primeira mensagem seja a de boas-vindas
+          // 2. Define o estado do chat imediatamente para a mensagem inicial (limpo)
           setMessages([InitialBotMessage]);
           
-          fetchMessages();
+          // Nota: O fetchMessages foi removido aqui para evitar a concorrência.
+          
       } catch (error) {
            console.error('Erro durante o refresh da sessão:', error);
+           fetchMessages(); // Tenta buscar o histórico em caso de falha na exclusão
       }
   };
   
-  // 2. EFEITOS E LIFECYCLE
-  
-  // Limpa e carrega o histórico ao montar o componente
+  // 3. EFEITO DE INICIALIZAÇÃO
   useEffect(() => {
+    // Apenas chama a função de limpeza no início
     clearAndFetchMessages(); 
   }, []);
 
@@ -76,8 +79,7 @@ function App() {
     }
   }, [messages]);
 
-  // 3. FUNÇÃO DE ENVIO
-  
+  // 4. FUNÇÃO DE ENVIO
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -86,7 +88,7 @@ function App() {
     setInput('');
 
     try {
-      // Adiciona a mensagem do usuário imediatamente ao estado (UX)
+      // Adiciona a mensagem do usuário imediatamente ao estado
       const tempUserMessage: Message = {
           id: Date.now(),
           sender: 'user',
@@ -105,8 +107,7 @@ function App() {
     }
   };
 
-  // 4. RENDERIZAÇÃO
-  
+  // 5. RENDERIZAÇÃO
   return (
     <div className="chat-container">
       <h2 className="chat-header">🍕 PizzaBot Atendente IA</h2>
