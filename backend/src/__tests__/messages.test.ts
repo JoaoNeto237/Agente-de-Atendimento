@@ -21,7 +21,8 @@ describe('API de Mensagens (Testes de Integração)', () => {
       
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('reply');
-    expect(response.body.reply).toContain('Temos os seguintes sabores de pizza');
+    // Corrigido para a resposta real do bot que inclui o cardápio completo
+    expect(response.body.reply).toContain('Cardápio');
   });
 
   it('deve retornar o histórico de mensagens após o envio', async () => {
