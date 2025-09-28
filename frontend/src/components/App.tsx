@@ -1,5 +1,3 @@
-// frontend/src/components/App.tsx
-
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import '../styles/App.css'; 
@@ -25,7 +23,7 @@ function App() {
   const [input, setInput] = useState('');
   const chatHistoryRef = useRef<HTMLDivElement>(null); 
 
-  // 1. FUNÇÃO DE BUSCA (AGORA COM CACHE-BUSTER)
+  // 1. FUNÇÃO DE BUSCA 
   const fetchMessages = async () => {
     try {
       // Adiciona um parâmetro de tempo único para forçar o navegador a não usar o cache
@@ -49,20 +47,19 @@ function App() {
     }
   };
 
-  // 2. FUNÇÃO DE LIMPEZA (GARANTE QUE O ESTADO LOCAL ESTEJA LIMPO)
+  // 2. FUNÇÃO DE LIMPEZA 
   const clearAndFetchMessages = async () => {
       try {
           // 1. Executa o DELETE e AGUARDA a confirmação de exclusão
           await axios.delete(API_BASE_URL); 
           
-          // 2. Define o estado do chat imediatamente para a mensagem inicial (limpo)
+          // 2. Define o estado do chat imediatamente para a mensagem inicial 
           setMessages([InitialBotMessage]);
           
-          // Nota: O fetchMessages foi removido aqui para evitar a concorrência.
           
       } catch (error) {
            console.error('Erro durante o refresh da sessão:', error);
-           fetchMessages(); // Tenta buscar o histórico em caso de falha na exclusão
+           fetchMessages();
       }
   };
   

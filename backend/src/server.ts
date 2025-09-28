@@ -6,7 +6,7 @@ import messagesRoutes from './routes/messagesRoutes';
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: 'https://pizza-bot-frontend.vercel.app', 
   methods: ['GET', 'POST', 'DELETE'],
 }));
 
