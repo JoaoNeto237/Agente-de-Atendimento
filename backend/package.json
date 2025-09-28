@@ -1,33 +1,46 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend for PizzaBot AI Agent Challenge.",
+  "main": "src/server.ts",
   "scripts": {
+    "start": "ts-node src/server.ts",
     "dev": "nodemon src/server.ts",
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "ai",
+    "chatbot",
+    "express",
+    "typescript"
+  ],
+  "author": "Seu Nome",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.19",
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.9",
     "@types/sqlite3": "^3.1.11",
     "@types/supertest": "^6.0.2",
-    "cors": "^2.8.5",
     "jest": "^29.7.0",
     "nodemon": "^3.1.4",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/src/__tests__/**/*.test.ts"
+    ]
   }
 }
