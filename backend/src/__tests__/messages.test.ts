@@ -21,7 +21,7 @@ describe('API de Mensagens (Testes de Integração)', () => {
       
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('reply');
-    // Corrigido para a resposta real do bot que inclui o cardápio completo
+   
     expect(response.body.reply).toContain('Cardápio');
   });
 

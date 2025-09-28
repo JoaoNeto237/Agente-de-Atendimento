@@ -3,7 +3,6 @@ import { pizzaBotService } from '../services/pizzaBotService';
 describe('pizzaBotService', () => {
 
   beforeEach(() => {
-    // Reset usando método público resetCtx se existir, senão force reset via any
     const service = pizzaBotService as any;
     if (typeof service.resetCtx === 'function') {
       service.resetCtx();
@@ -28,9 +27,9 @@ describe('pizzaBotService', () => {
   });
 
   it('deve oferecer sobremesa após pedido de bebida', () => {
-    pizzaBotService.handleMessage("Quero uma pizza Portuguesa"); // Primeiro pede pizza
+    pizzaBotService.handleMessage("Quero uma pizza Portuguesa"); 
     const reply = pizzaBotService.handleMessage("Quero uma Coca-Cola");
-    expect(reply).toContain('Temos: Coca-Cola'); // Resposta real do bot
+    expect(reply).toContain('Temos: Coca-Cola'); 
   });
 
   it('deve manter foco em pizzas', () => {
@@ -39,10 +38,9 @@ describe('pizzaBotService', () => {
   });
 
   it('deve oferecer sobremesas após recusar bebida', () => {
-    // Simula o fluxo: pizza -> recusar bebida -> oferece sobremesa
     pizzaBotService.handleMessage("Quero uma pizza Portuguesa");
     const reply = pizzaBotService.handleMessage("não");
-    expect(reply).toContain('Que tal sobremesas'); // Resposta real do bot
+    expect(reply).toContain('Que tal sobremesas'); 
   });
 
   it('deve mostrar menu quando solicitado', () => {

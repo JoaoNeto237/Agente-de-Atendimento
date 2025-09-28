@@ -28,10 +28,10 @@ export async function openDb(): Promise<Database> {
 export async function clearMessages(): Promise<void> {
     const db = await openDb();
     
-    // 1. Apaga todos os registros da tabela 'messages'
+    //  Apaga todos os registros da tabela 'messages'
     await db.run('DELETE FROM messages');
 
-    // 2. Reseta o contador de ID para começar do 1 novamente
+    //  Reseta o contador de ID para começar do 1 novamente
     await db.run("DELETE FROM sqlite_sequence WHERE name='messages'");
     
     console.log('Histórico de mensagens anteriores apagado com sucesso.');
