@@ -31,7 +31,7 @@ O projeto cumpre integralmente os requisitos do desafio, com foco na arquitetura
 
 ---
 
-## ✅ Extras e Diferenciais (Qualidade)
+## ✅ Extras e Diferenciais 
 
 1.  **Testes Automatizados:** Implementação de **Testes Unitários (Jest)** para validar a lógica de vendas do Agente de IA e **Testes de Integração (Supertest)** para garantir o funcionamento das rotas da API.
 2.  **Organização Git:** Uso de **Conventional Commits** e fluxo de trabalho com branches de *feature* para isolamento de código (`feat/api-messages`, `feat/frontend-chat`).
