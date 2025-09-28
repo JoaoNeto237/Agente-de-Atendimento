@@ -11,7 +11,7 @@ interface Message {
   content: string;
 }
 
-const API_BASE_URL = 'http://localhost:3000/messages'; 
+const API_BASE_URL = 'https://pizza-bot-backend.onrender.com/messages'; 
 
 // Mensagem inicial de boas-vindas
 const InitialBotMessage: Message = {
